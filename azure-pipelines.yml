@@ -16,8 +16,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- checkout: self
 - task: NodeTool@0
   inputs:
     versionSpec: '18.x'
