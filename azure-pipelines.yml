@@ -3,6 +3,13 @@
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
+resources:
+  repositories:
+  - repository: MyDocCollectionRepo # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: doc-collection
+    name: herivelton-telefonica/doc-collection
+ 
 trigger:
 - master
 
@@ -10,6 +17,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- checkout: self
 - task: NodeTool@0
   inputs:
     versionSpec: '18.x'
@@ -20,6 +28,9 @@ steps:
     npm run start-gendoc
   displayName: 'npm install and generate doc'
 
+- checkout: MyDocCollectionRepo
+
+- script: dir $(Build.SourcesDirectory)
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
