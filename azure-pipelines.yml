@@ -5,9 +5,9 @@
 
 resources:
   repositories:
-  - repository: MyDocCollectionRepo # The name used to reference this repository in the checkout step
+  - repository: MyDocCollectionRepo
     type: github
-    endpoint: doc-collection
+    endpoint: herivelton-telefonica/doc-collectio
     name: herivelton-telefonica/doc-collection
  
 trigger:
